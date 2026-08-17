@@ -1,0 +1,1252 @@
+/* ==========================================================================
+   HAPPY BIRTHDAY SADHARNA.E - STYLESHEET
+   Pure CSS - Blue, Light Blue, White Theme with Soft Animations
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --primary-blue-dark: #1e3a8a;
+  --primary-blue-light: #93c5fd;
+  --sky-blue: #38bdf8;
+  --sky-blue-light: #e0f2fe;
+  --ice-blue-bg: #f0f9ff;
+  --white: #ffffff;
+  --white-translucent: rgba(255, 255, 255, 0.85);
+  
+  --text-dark: #0f172a;
+  --text-medium: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  --font-main: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  --font-handwriting: 'Caveat', cursive, sans-serif;
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.06), 0 2px 4px -2px rgba(37, 99, 235, 0.04);
+  --shadow-md: 0 12px 24px -4px rgba(37, 99, 235, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 40px -8px rgba(37, 99, 235, 0.2), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.5);
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Resets & Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--ice-blue-bg);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(147, 197, 253, 0.2) 0%, transparent 45%);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ice-blue-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-blue-light);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue);
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+/* Background Canvas */
+.bg-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#starCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. Floating Music Control
+   -------------------------------------------------------------------------- */
+.music-toggle-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(147, 197, 253, 0.6);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  color: var(--primary-blue-dark);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.music-toggle-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  background: var(--white);
+}
+
+.music-toggle-btn.playing {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+.sound-wave {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.music-toggle-btn.playing .sound-wave {
+  display: flex;
+}
+
+.sound-wave span {
+  width: 3px;
+  height: 100%;
+  background-color: var(--white);
+  border-radius: 2px;
+  animation: bounceWave 0.8s ease-in-out infinite alternate;
+}
+.sound-wave span:nth-child(2) { animation-delay: 0.2s; }
+.sound-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounceWave {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+  padding: 1rem 0;
+  transition: var(--transition-normal);
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(147, 197, 253, 0.3);
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-blue-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.brand-logo .highlight {
+  color: var(--sky-blue);
+}
+
+.logo-heart {
+  display: inline-block;
+  animation: pulseHeart 1.8s infinite;
+}
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-blue);
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.nav-links a:hover {
+  color: var(--primary-blue);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 7rem 1.25rem 4rem 1.25rem;
+  text-align: center;
+}
+
+.hero-container {
+  max-width: 800px;
+  z-index: 1;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.25rem;
+  background: var(--sky-blue-light);
+  color: var(--primary-blue-dark);
+  border: 1px solid var(--primary-blue-light);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-pill.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.name-gradient {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 40%, var(--sky-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--text-medium);
+  max-width: 620px;
+  margin: 0 auto 2.5rem auto;
+  font-weight: 400;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Button Component */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #1d4ed8 100%);
+  color: var(--white);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.5), var(--shadow-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.pulse-btn {
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  50% { box-shadow: 0 0 0 16px rgba(37, 99, 235, 0); }
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--sky-blue-light);
+  border-color: var(--primary-blue);
+  transform: translateY(-3px);
+}
+
+.btn-instagram {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  color: var(--white);
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);
+}
+
+.btn-instagram:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.5);
+}
+
+.floating-cards-preview {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.mini-card {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(147, 197, 253, 0.5);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-blue-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.left-card { animation: float 5s ease-in-out infinite 0.5s; }
+.right-card { animation: float 5s ease-in-out infinite 1.5s; }
+
+.scroll-down-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.scroll-down-indicator a {
+  display: block;
+  padding: 10px;
+}
+
+.chevron {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-bottom: 3px solid var(--primary-blue);
+  border-right: 3px solid var(--primary-blue);
+  transform: rotate(45deg);
+  animation: bounceChevron 2s infinite;
+}
+
+@keyframes bounceChevron {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+  40% { transform: translateY(-10px) rotate(45deg); }
+  60% { transform: translateY(-5px) rotate(45deg); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Section Headers
+   -------------------------------------------------------------------------- */
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--primary-blue);
+  background: var(--sky-blue-light);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: var(--primary-blue-dark);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   7. Photo Gallery Section
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.gallery-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(147, 197, 253, 0.4);
+  transition: var(--transition-bounce);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(147, 197, 253, 0.4);
+}
+
+.gallery-card.featured {
+  grid-column: span 1;
+}
+
+@media (min-width: 900px) {
+  .gallery-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: var(--sky-blue-light);
+}
+
+.gallery-card.featured .image-wrapper {
+  aspect-ratio: auto;
+  min-height: 380px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-card:hover .image-wrapper img {
+  transform: scale(1.08);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  opacity: 0.9;
+  transition: var(--transition-normal);
+}
+
+.zoom-icon {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.gallery-card:hover .zoom-icon {
+  background: var(--primary-blue);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.card-tag {
+  align-self: flex-start;
+  background: rgba(37, 99, 235, 0.9);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+}
+
+.card-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-details h3 {
+  font-size: 1.25rem;
+  color: var(--primary-blue-dark);
+  margin-bottom: 0.5rem;
+}
+
+.card-details p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Sister Quotes Section
+   -------------------------------------------------------------------------- */
+.quotes-section {
+  background: linear-gradient(180deg, var(--ice-blue-bg) 0%, var(--sky-blue-light) 50%, var(--ice-blue-bg) 100%);
+  position: relative;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.quote-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(147, 197, 253, 0.5);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.75rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: var(--transition-bounce);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-blue-light);
+  background: var(--white);
+}
+
+.quote-card.accent-card {
+  border-top: 4px solid var(--primary-blue);
+}
+
+.quote-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.quote-text {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.quote-footer {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   9. Birthday Message Section
+   -------------------------------------------------------------------------- */
+.message-card-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-lg);
+  border: 2px dashed var(--primary-blue-light);
+  position: relative;
+}
+
+.message-card-inner {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border-radius: calc(var(--radius-lg) - 6px);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.message-stamp {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  opacity: 0.8;
+  transform: rotate(12deg);
+}
+
+.message-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  color: var(--primary-blue-dark);
+  margin-bottom: 1rem;
+}
+
+.message-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.message-divider span:not(.heart-dot) {
+  height: 2px;
+  width: 60px;
+  background: var(--primary-blue-light);
+  border-radius: var(--radius-full);
+}
+
+.heart-dot {
+  font-size: 1.2rem;
+}
+
+.message-lead {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+}
+
+.message-body {
+  font-size: 1.15rem;
+  color: var(--text-medium);
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.message-signature {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.signature-name {
+  font-family: var(--font-handwriting);
+  font-size: 2.2rem;
+  color: var(--primary-blue-dark);
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Instagram Section
+   -------------------------------------------------------------------------- */
+.insta-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(147, 197, 253, 0.5);
+  position: relative;
+}
+
+.insta-badge {
+  display: inline-block;
+  background: var(--sky-blue-light);
+  color: var(--primary-blue-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.insta-title {
+  font-size: 2rem;
+  color: var(--primary-blue-dark);
+  margin-bottom: 1.25rem;
+}
+
+.insta-id-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ice-blue-bg);
+  border: 1px solid var(--primary-blue-light);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1.25rem;
+}
+
+.insta-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+.insta-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. Final Section & Footer
+   -------------------------------------------------------------------------- */
+.final-section {
+  background: linear-gradient(180deg, var(--ice-blue-bg) 0%, #dbeafe 100%);
+  padding: 6rem 0 4rem 0;
+  position: relative;
+}
+
+.final-banner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.balloon-decor {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.balloon {
+  display: inline-block;
+  animation: balloonFloat 4s ease-in-out infinite alternate;
+}
+
+.balloon.sky { animation-delay: 1s; }
+.balloon.white { animation-delay: 2s; }
+
+@keyframes balloonFloat {
+  0% { transform: translateY(0) rotate(-3deg); }
+  100% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.final-heading {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--primary-blue-dark);
+  margin-bottom: 1rem;
+}
+
+.final-subtext {
+  font-size: 1.15rem;
+  color: var(--text-medium);
+  margin-bottom: 2rem;
+}
+
+.footer {
+  background: var(--primary-blue-dark);
+  color: var(--white);
+  padding: 2.5rem 0;
+}
+
+.footer-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: var(--primary-blue-light);
+}
+
+/* --------------------------------------------------------------------------
+   12. Lightbox Modal
+   -------------------------------------------------------------------------- */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  border: none;
+  font-size: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  text-align: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-caption {
+  color: var(--white);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   13. Birthday Surprise Modal & Interactive Cake
+   -------------------------------------------------------------------------- */
+.surprise-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(14px);
+  z-index: 210;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.surprise-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.surprise-modal-content {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.surprise-modal.active .surprise-modal-content {
+  transform: scale(1);
+}
+
+.surprise-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--ice-blue-bg);
+  border: none;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+.surprise-badge {
+  display: inline-block;
+  background: var(--sky-blue-light);
+  color: var(--primary-blue-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.surprise-header h2 {
+  font-size: 1.8rem;
+  color: var(--primary-blue-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* CSS Animated Birthday Cake */
+.cake-container {
+  width: 220px;
+  height: 200px;
+  margin: 1rem auto 1.5rem auto;
+  position: relative;
+}
+
+.plate {
+  width: 240px;
+  height: 14px;
+  background: #cbd5e1;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cake {
+  width: 180px;
+  height: 130px;
+  position: absolute;
+  bottom: 14px;
+  left: 20px;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.layer-bottom {
+  height: 45px;
+  bottom: 0;
+  background: #3b82f6;
+}
+
+.layer-middle {
+  height: 45px;
+  bottom: 45px;
+  background: #60a5fa;
+}
+
+.layer-top {
+  height: 45px;
+  bottom: 90px;
+  background: #93c5fd;
+}
+
+.icing {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+
+.candles {
+  position: absolute;
+  top: -35px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 30px;
+}
+
+.candle {
+  width: 12px;
+  height: 35px;
+  background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px, #2563eb 5px, #2563eb 10px);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.flame {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 18px;
+  background: #f59e0b;
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 10px #f59e0b, 0 0 20px #ef4444;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.flame.active {
+  opacity: 1;
+  animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+  100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+}
+
+.cake-instruction {
+  font-size: 0.95rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.wish-revealed.hidden {
+  display: none;
+}
+
+.wish-box {
+  background: var(--ice-blue-bg);
+  border: 1px solid var(--primary-blue-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.wish-box h3 {
+  color: var(--primary-blue-dark);
+  margin-bottom: 0.5rem;
+}
+
+.wish-text {
+  color: var(--text-medium);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Confetti Canvas */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 300;
+}
+
+/* --------------------------------------------------------------------------
+   14. Animations & Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Can be expanded or kept sleek on mobile */
+  }
+
+  .hero-section {
+    padding-top: 6rem;
+  }
+
+  .section-padding {
+    padding: 3.5rem 0;
+  }
+
+  .message-card-inner {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .floating-cards-preview {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .music-toggle-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .badge-pill.floating,
+  .balloon,
+  .logo-heart,
+  .pulse-btn {
+    animation: none !important;
+  }
+}

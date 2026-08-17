@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sadharna.E 🎂💙 | To My Amazing Sister</title>
+  <meta name="description" content="Wishing a very Happy Birthday to Sadharna.E! A cute, lovable, and special birthday celebration page made with lots of love.">
+  <meta name="theme-color" content="#2563EB">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Background Elements -->
+  <div class="bg-decorations" aria-hidden="true">
+    <canvas id="starCanvas"></canvas>
+  </div>
+
+  <!-- Music Control Button -->
+  <button id="musicToggleBtn" class="music-toggle-btn" aria-label="Toggle background music" title="Play Birthday Music 🎵">
+    <span class="music-icon">🎵</span>
+    <span class="music-text">Music Off</span>
+    <span class="sound-wave" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-birthday-happy-acoustic-guitar-113982.mp3"></audio>
+
+  <!-- Navbar / Header -->
+  <header class="header">
+    <nav class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-heart">💙</span> Sadharna<span class="highlight">.E</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#quotes">Quotes</a></li>
+        <li><a href="#message">Message</a></li>
+        <li><a href="#instagram">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="badge-pill floating">
+          <span class="sparkle">✨</span> Today is a Very Special Day! <span class="sparkle">✨</span>
+        </div>
+        <h1 class="hero-title">
+          Happy Birthday <br>
+          <span class="name-gradient">Sadharna.E</span> 🎂💙
+        </h1>
+        <p class="hero-subtitle">
+          To my amazing sister, wishing you endless happiness, bright laughter, and all the love in the world!
+        </p>
+        <div class="hero-cta">
+          <button id="surpriseBtn" class="btn btn-primary pulse-btn">
+            <span class="btn-icon">🎁</span> Open Birthday Surprise
+          </button>
+        </div>
+        <div class="floating-cards-preview">
+          <div class="mini-card left-card">
+            <span>🌸 Sister Forever</span>
+          </div>
+          <div class="mini-card right-card">
+            <span>✨ Keep Shining</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-down-indicator">
+        <a href="#gallery" aria-label="Scroll down to photo gallery">
+          <span class="chevron"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY SECTION -->
+    <section id="gallery" class="gallery-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Precious Memories</span>
+          <h2 class="section-title">Photo Gallery 📸</h2>
+          <p class="section-subtitle">Capturing moments of grace, happiness, and sisterly warmth.</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Featured Photo Card -->
+          <div class="gallery-card featured" data-src="assets/photos/sadharna1.jpg" data-caption="Sadharna.E - Looking stunning in traditional attire 🌸">
+            <div class="image-wrapper">
+              <img src="assets/photos/sadharna1.jpg" alt="Sadharna.E smiling gracefully in traditional saree" loading="lazy">
+              <div class="card-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="card-tag">👑 The Birthday Queen</span>
+              </div>
+            </div>
+            <div class="card-details">
+              <h3>Pure Grace & Elegance 🌺</h3>
+              <p>Celebrating the incredible person you are today and every day.</p>
+            </div>
+          </div>
+
+          <!-- Highlight Cards featuring memory highlights -->
+          <div class="gallery-card" data-src="assets/photos/sadharna1.jpg" data-caption="Sweetest Smiles & Lifelong Memories 💙">
+            <div class="image-wrapper">
+              <img src="assets/photos/sadharna1.jpg" alt="Sadharna.E Photo Portrait" loading="lazy">
+              <div class="card-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="card-tag">✨ Beautiful Moment</span>
+              </div>
+            </div>
+            <div class="card-details">
+              <h3>Radiant Smile 💖</h3>
+              <p>Your joy lights up every room you walk into.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card" data-src="assets/photos/sadharna1.jpg" data-caption="Forever Friends, Forever Sisters 👭">
+            <div class="image-wrapper">
+              <img src="assets/photos/sadharna1.jpg" alt="Sadharna.E Beautiful Celebration Photo" loading="lazy">
+              <div class="card-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="card-tag">🌟 Sisterly Bond</span>
+              </div>
+            </div>
+            <div class="card-details">
+              <h3>Best Sister Ever 💙</h3>
+              <p>Grateful for every single laughter and memory shared.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SISTER QUOTES SECTION -->
+    <section id="quotes" class="quotes-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Words From The Heart</span>
+          <h2 class="section-title">Sister Quotes 💬</h2>
+          <p class="section-subtitle">A collection of quotes that remind me of how special you are.</p>
+        </div>
+
+        <div class="quotes-grid">
+          <div class="quote-card fade-in-up">
+            <div class="quote-icon">💙</div>
+            <blockquote class="quote-text">
+              “A sister is a forever friend who makes every memory more special.”
+            </blockquote>
+            <div class="quote-footer">
+              <span class="quote-author">— Eternal Sisterhood</span>
+            </div>
+          </div>
+
+          <div class="quote-card fade-in-up accent-card">
+            <div class="quote-icon">✨</div>
+            <blockquote class="quote-text">
+              “Life is better, brighter, and happier with a sister like you.”
+            </blockquote>
+            <div class="quote-footer">
+              <span class="quote-author">— Always & Forever</span>
+            </div>
+          </div>
+
+          <div class="quote-card fade-in-up">
+            <div class="quote-icon">❤️</div>
+            <blockquote class="quote-text">
+              “You are not just my sister, you are one of my favorite people.”
+            </blockquote>
+            <div class="quote-footer">
+              <span class="quote-author">— Lots of Love</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIRTHDAY MESSAGE SECTION -->
+    <section id="message" class="message-section section-padding">
+      <div class="container">
+        <div class="message-card-wrapper">
+          <div class="message-card-inner">
+            <div class="message-stamp">🎂💙</div>
+            <h2 class="message-title">A Special Message For You 💙</h2>
+            <div class="message-divider">
+              <span></span><span class="heart-dot">💙</span><span></span>
+            </div>
+            <div class="message-content">
+              <p class="message-lead">Happy Birthday, Sadharna.E! 🎂</p>
+              <p class="message-body">
+                May your life always be filled with happiness, success, beautiful memories, and endless smiles. Keep shining and always stay the wonderful person you are. Lots of love, Sister! 💙✨
+              </p>
+            </div>
+            <div class="message-signature">
+              <span>With all my love & hugs,</span>
+              <div class="signature-name">Your Loving Sister 💙</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM SECTION -->
+    <section id="instagram" class="instagram-section section-padding">
+      <div class="container">
+        <div class="insta-card">
+          <div class="insta-badge">📸 Connect & Wish</div>
+          <h2 class="insta-title">Follow Sadharna.E 📸</h2>
+          <div class="insta-id-container">
+            <span class="insta-icon">📷</span>
+            <span class="insta-handle" id="instaHandleText">@sadharna_e</span>
+          </div>
+          <p class="insta-desc">Send her your sweet birthday wishes directly on Instagram!</p>
+          <div class="insta-actions">
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" id="visitInstaBtn" class="btn btn-instagram">
+              <span class="insta-btn-icon">✨</span> Visit Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL SECTION -->
+    <section class="final-section text-center section-padding">
+      <div class="container">
+        <div class="final-banner">
+          <div class="balloon-decor" aria-hidden="true">
+            <span class="balloon blue">🎈</span>
+            <span class="balloon sky">🎈</span>
+            <span class="balloon white">🎈</span>
+          </div>
+          <h2 class="final-heading">Happy Birthday Once Again, Sadharna.E! 💙🎂✨</h2>
+          <p class="final-subtext">Wishing you a year filled with joy, triumphs, and sparkling adventures!</p>
+          <button id="finalConfettiBtn" class="btn btn-secondary">
+            Celebrate Again 🎉
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="footer-text">Made with ❤️ for Sadharna.E</p>
+      <p class="footer-copyright">© <span id="currentYear"></span> Sadharna.E Birthday Celebration Page</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR GALLERY PHOTOS -->
+  <div id="photoLightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close photo modal">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="" alt="Sadharna.E Full View">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- BIRTHDAY SURPRISE MODAL -->
+  <div id="surpriseModal" class="surprise-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="surprise-modal-content">
+      <button class="surprise-close" id="surpriseClose" aria-label="Close surprise">&times;</button>
+      <div class="modal-body text-center">
+        <div class="surprise-header">
+          <span class="surprise-badge">🎁 Special Birthday Surprise!</span>
+          <h2>Make a Wish, Sadharna! 🕯️✨</h2>
+        </div>
+
+        <!-- Interactive Birthday Cake -->
+        <div class="cake-container">
+          <div class="plate"></div>
+          <div class="cake">
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="drips">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="candles">
+              <div class="candle" id="candle1">
+                <div class="flame active"></div>
+              </div>
+              <div class="candle" id="candle2">
+                <div class="flame active"></div>
+              </div>
+              <div class="candle" id="candle3">
+                <div class="flame active"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="cake-instruction" id="cakeInstruction">
+          Click the candles to blow them out & unlock your birthday wish! 🕯️👇
+        </p>
+
+        <div class="wish-revealed hidden" id="wishRevealed">
+          <div class="wish-box">
+            <h3>🎉 Wish Unlocked! 🎉</h3>
+            <p class="wish-text">
+              “May every single day of your upcoming year bring you immense happiness, good health, endless peace, and success in everything you set your heart on! You are cherished forever! 💙✨”
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
