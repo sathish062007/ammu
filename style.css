@@ -342,6 +342,56 @@ img {
   display: inline-block;
 }
 
+/* Hero Profile Photo Frame */
+.hero-photo-container {
+  margin: 1.5rem auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo-card {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(135deg, var(--sky-blue) 0%, var(--primary-blue) 50%, var(--primary-blue-dark) 100%);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3), var(--shadow-glow);
+  animation: float 4s ease-in-out infinite;
+  transition: transform var(--transition-bounce);
+}
+
+.hero-photo-card:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.hero-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 4px solid var(--white);
+  display: block;
+}
+
+.hero-photo-badge {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  color: var(--primary-blue-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--primary-blue-light);
+  white-space: nowrap;
+}
+
 .hero-subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.35rem);
   color: var(--text-medium);
@@ -552,21 +602,35 @@ img {
 .image-wrapper {
   position: relative;
   overflow: hidden;
+  width: 100%;
   aspect-ratio: 4 / 5;
   background-color: var(--sky-blue-light);
+  min-height: 280px;
 }
 
 .gallery-card.featured .image-wrapper {
-  aspect-ratio: auto;
+  aspect-ratio: 4 / 3;
   min-height: 380px;
+  height: 100%;
+}
+
+@media (max-width: 899px) {
+  .gallery-card.featured .image-wrapper {
+    aspect-ratio: 4 / 5;
+    min-height: 280px;
+  }
 }
 
 .image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: block;
 }
 
 .gallery-card:hover .image-wrapper img {
